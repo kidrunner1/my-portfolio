@@ -41,16 +41,16 @@ const projects: Project[] = [
 
         images: [
 
-            "/images/Project/KICKS1.png",
-            "/images/Project/KICKS2.png",
-            "/images/Project/KICKS3.png",
-            "/images/Project/KICKS4.png",
-            "/images/Project/KICKS5.png",
-            "/images/Project/KICKS6.png",
-            "/images/Project/KICKS7.png",
-            "/images/Project/KICKS8.png",
-            "/images/Project/KICKS9.png",
-            "/images/Project/KICKS10.png",
+            "/images/Project/kicks1.png",
+            "/images/Project/kicks2.png",
+            "/images/Project/kicks3.png",
+            "/images/Project/kicks4.png",
+            "/images/Project/kicks5.png",
+            "/images/Project/kicks6.png",
+            "/images/Project/kicks7.png",
+            "/images/Project/kicks8.png",
+            "/images/Project/kicks9.png",
+            "/images/Project/kicks10.png",
 
         ],
 
