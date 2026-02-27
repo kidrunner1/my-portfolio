@@ -58,7 +58,7 @@ const projects: Project[] = [
             "https://github.com/kidrunner1/kicks-vault",
 
         liveUrl:
-            "https://kicks-vault.verce l.app/login",
+            "https://kicks-vault.vercel.app/login",
 
     },
 
