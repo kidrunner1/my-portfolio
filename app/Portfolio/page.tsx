@@ -1,9 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { JSX, useEffect, useMemo, useState } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
+import { JSX, useMemo, useState } from "react";
 import projects, { type Project } from "../project_data/project";
 
 type ProjectImageCarouselProps = {
@@ -184,15 +182,6 @@ function ProjectCard({
 
 export default function PortfolioPage(): JSX.Element {
     const [activeCategory, setActiveCategory] = useState<string>("All");
-
-    useEffect(() => {
-        AOS.init({
-            duration: 800,
-            once: true,
-            offset: 80,
-            easing: "ease-out-cubic",
-        });
-    }, []);
 
     const categories = useMemo(
         () => ["All", ...Array.from(new Set(projects.map((project) => project.category)))],

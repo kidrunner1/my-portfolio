@@ -1,9 +1,5 @@
-"use client";
-
 import Image from "next/image";
-import { JSX, useEffect } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
+import { JSX } from "react";
 
 type ContactMethod = {
     label: string;
@@ -60,15 +56,6 @@ const responseSteps = [
 ];
 
 export default function ContactPage(): JSX.Element {
-    useEffect(() => {
-        AOS.init({
-            duration: 800,
-            once: true,
-            offset: 80,
-            easing: "ease-out-cubic",
-        });
-    }, []);
-
     return (
         <main className="min-h-screen overflow-hidden bg-[#07111f] text-white">
             <section className="border-b border-white/10 bg-[radial-gradient(circle_at_18%_18%,rgba(20,184,166,0.18),transparent_32%),radial-gradient(circle_at_82%_22%,rgba(244,63,94,0.14),transparent_28%),linear-gradient(135deg,#07111f_0%,#0f172a_52%,#111827_100%)] px-6 pb-20 pt-28 sm:px-10">

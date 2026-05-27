@@ -145,7 +145,13 @@ export function World({
     return (
         <Canvas
             camera={{ position: [0, 0, cameraZ], fov: 50 }}
+            dpr={[1, 1.25]}
             frameloop="always"
+            gl={{
+                alpha: true,
+                antialias: false,
+                powerPreference: "low-power",
+            }}
         >
 
             <ambientLight
@@ -183,33 +189,3 @@ export function World({
     );
 }
 
-/* ================= DEMO ================= */
-
-export function GlobeDemo(): JSX.Element {
-
-    const config: GlobeConfig = {
-        ambientLight: "#38bdf8",
-        directionalLeftLight: "#ffffff",
-        directionalTopLight: "#ffffff",
-        pointLight: "#ffffff",
-        autoRotateSpeed: 0.5,
-    };
-
-    const arcs: ArcData[] = [
-        {
-            order: 1,
-            startLat: 13.7563,
-            startLng: 100.5018,
-            endLat: 35.6762,
-            endLng: 139.6503,
-            arcAlt: 0.3,
-            color: "#3b82f6",
-        },
-    ];
-
-    return (
-        <div className="w-full h-full">
-            <World globeConfig={config} data={arcs} />
-        </div>
-    );
-}

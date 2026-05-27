@@ -1,22 +1,6 @@
-"use client";
-
-import { JSX, useEffect } from "react";
+import { JSX } from "react";
 import Link from "next/link";
-import dynamic from "next/dynamic";
-import AOS from "aos";
-import "aos/dist/aos.css";
-
-const GlobeDemo = dynamic(
-  () => import("@/app/components/GithubGlobe").then((mod) => mod.GlobeDemo),
-  {
-    ssr: false,
-    loading: () => (
-      <div className="flex h-full min-h-[320px] items-center justify-center rounded-lg border border-white/10 bg-slate-950/60 text-sm text-slate-400">
-        Loading interactive globe
-      </div>
-    ),
-  }
-);
+import LazyGlobe from "./components/LazyGlobe";
 
 const highlights = [
   { value: "4+", label: "โปรเจคจริง", detail: "เว็บ แอป และ dashboard" },
@@ -69,15 +53,6 @@ const featuredProjects = [
 ];
 
 export default function Home(): JSX.Element {
-  useEffect(() => {
-    AOS.init({
-      once: true,
-      duration: 800,
-      easing: "ease-out-cubic",
-      offset: 80,
-    });
-  }, []);
-
   return (
     <main className="min-h-screen overflow-hidden bg-[#07111f] text-white">
       <section className="relative border-b border-white/10 bg-[radial-gradient(circle_at_18%_20%,rgba(20,184,166,0.20),transparent_32%),radial-gradient(circle_at_82%_24%,rgba(244,63,94,0.16),transparent_30%),linear-gradient(135deg,#07111f_0%,#101827_48%,#111827_100%)]">
@@ -153,7 +128,7 @@ export default function Home(): JSX.Element {
               <p className="mt-1 text-xs text-slate-400">Lint, Build, Audit, Deploy</p>
             </div>
             <div className="relative h-[430px] sm:h-[560px] lg:h-[620px]">
-              <GlobeDemo />
+              <LazyGlobe />
             </div>
             <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-linear-to-t from-[#07111f] to-transparent" />
           </div>
