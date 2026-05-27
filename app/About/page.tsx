@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { JSX, useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -91,9 +92,11 @@ export default function AboutPage(): JSX.Element {
 
                         <div className="absolute -inset-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl blur opacity-30 group-hover:opacity-60 transition" />
 
-                        <img
+                        <Image
                             src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80"
                             alt="Profile visual"
+                            width={600}
+                            height={600}
                             className="relative w-full max-w-md rounded-2xl shadow-2xl object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                         />
 

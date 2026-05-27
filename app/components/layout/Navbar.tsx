@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import type { JSX } from "react";
 
@@ -43,11 +43,6 @@ const CloseIcon = (): JSX.Element => (
 
 export default function NavbarClient(): JSX.Element {
     const [open, setOpen] = useState<boolean>(false);
-    const [mounted, setMounted] = useState<boolean>(false);
-
-    useEffect(() => {
-        setMounted(true);
-    }, []);
 
     const navLinks: NavLink[] = [
         { href: "/About", label: "ABOUT ME" },
@@ -64,8 +59,7 @@ export default function NavbarClient(): JSX.Element {
       border border-white/10
       shadow-xl
       px-5 py-2
-      transition-all duration-500
-      ${mounted ? "opacity-100 scale-100" : "opacity-0 scale-95"}`}
+      transition-all duration-500`}
         >
             <nav className="flex items-center justify-between h-12">
                 {/* Logo */}

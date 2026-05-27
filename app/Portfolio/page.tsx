@@ -1,9 +1,10 @@
 "use client";
 
-import React, { JSX, useEffect, useState } from "react";
+import Image from "next/image";
+import { JSX, useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import projects from "../project_data/project"
+import projects from "../project_data/project";
 
 type Project = {
     id: number;
@@ -39,11 +40,13 @@ function ProjectImageCarousel({ images,
     return (
         <div className="relative group w-full max-w-[900px]">
             {/* Image */}
-            <div className="aspect-[3/2] overflow-hidden rounded-2xl shadow-2xl">
-                <img
+            <div className="relative aspect-[3/2] overflow-hidden rounded-2xl shadow-2xl">
+                <Image
                     src={images[index]}
                     alt="Project preview"
-                    className="w-full h-full object-cover"
+                    fill
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                    className="object-cover"
                 />
             </div>
 

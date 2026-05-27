@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState, JSX } from "react";
-import { Color, Group } from "three";
+import { JSX, useEffect, useMemo } from "react";
+import { Color, MeshPhongMaterial } from "three";
 import ThreeGlobe from "three-globe";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
@@ -27,6 +27,16 @@ export type GlobeConfig = {
     autoRotateSpeed?: number;
 };
 
+type GlobeCountries = {
+    features: object[];
+};
+
+type RingData = {
+    lat: number;
+    lng: number;
+    color: string;
+};
+
 /* ================= CONSTANTS ================= */
 
 const RING_PROPAGATION_SPEED = 3;
@@ -35,51 +45,29 @@ const cameraZ = 300;
 /* ================= GLOBE ================= */
 
 function Globe({
-    globeConfig,
     data,
 }: {
-    globeConfig: GlobeConfig;
     data: ArcData[];
 }): JSX.Element {
 
-    const globeRef = useRef<any>(null);
-    const groupRef = useRef<Group | null>(null);
-    const [ready, setReady] = useState(false);
-
-    /* ---------- INIT ---------- */
-
-    useEffect(() => {
-        if (!globeRef.current && groupRef.current) {
-            globeRef.current = new ThreeGlobe();
-            groupRef.current.add(
-                globeRef.current as unknown as Group
-            );
-            setReady(true);
-        }
-    }, []);
+    const globe = useMemo(() => new ThreeGlobe(), []);
 
     /* ---------- MATERIAL ---------- */
 
     useEffect(() => {
-        if (!ready) return;
-
-        const material = globeRef.current.globeMaterial();
+        const material = globe.globeMaterial() as MeshPhongMaterial;
 
         material.color = new Color("#1d072e");
         material.emissive = new Color("#000000");
         material.emissiveIntensity = 0.1;
         material.shininess = 0.9;
-    }, [ready]);
+    }, [globe]);
 
     /* ---------- MAP + ARCS ---------- */
 
     useEffect(() => {
-        if (!ready || !data) return;
-
-        const globe = globeRef.current;
-
         globe
-            .hexPolygonsData((countries as any).features)
+            .hexPolygonsData((countries as GlobeCountries).features)
             .hexPolygonResolution(3)
             .hexPolygonMargin(0.7)
             .showAtmosphere(true)
@@ -89,34 +77,32 @@ function Globe({
 
         globe
             .arcsData(data)
-            .arcStartLat((d: any) => d.startLat)
-            .arcStartLng((d: any) => d.startLng)
-            .arcEndLat((d: any) => d.endLat)
-            .arcEndLng((d: any) => d.endLng)
-            .arcColor((d: any) => d.color)
-            .arcAltitude((d: any) => d.arcAlt)
+            .arcStartLat((d: object) => (d as ArcData).startLat)
+            .arcStartLng((d: object) => (d as ArcData).startLng)
+            .arcEndLat((d: object) => (d as ArcData).endLat)
+            .arcEndLng((d: object) => (d as ArcData).endLng)
+            .arcColor((d: object) => (d as ArcData).color)
+            .arcAltitude((d: object) => (d as ArcData).arcAlt)
             .arcDashLength(0.9)
             .arcDashGap(15)
             .arcDashAnimateTime(2000);
 
-    }, [ready, data]);
+    }, [globe, data]);
 
     /* ---------- RINGS ---------- */
 
     useEffect(() => {
-        if (!ready || !data) return;
-
         const interval = setInterval(() => {
 
-            const ringsData = data.map((d) => ({
+            const ringsData: RingData[] = data.map((d) => ({
                 lat: d.startLat,
                 lng: d.startLng,
                 color: d.color,
             }));
 
-            globeRef.current
+            globe
                 .ringsData(ringsData)
-                .ringColor((e: any) => e.color)
+                .ringColor((e: object) => (e as RingData).color)
                 .ringMaxRadius(5)
                 .ringPropagationSpeed(RING_PROPAGATION_SPEED)
                 .ringRepeatPeriod(2000);
@@ -125,13 +111,10 @@ function Globe({
 
         return () => clearInterval(interval);
 
-    }, [ready, data]);
+    }, [globe, data]);
 
     return (
-        <group
-            ref={groupRef}
-            position={[0, 0, 0]}
-        />
+        <primitive object={globe} />
     );
 }
 
@@ -171,7 +154,7 @@ export function World({
                 position={[-200, 500, 200]}
             />
 
-            <Globe globeConfig={globeConfig} data={data} />
+            <Globe data={data} />
 
             <OrbitControls
                 enableZoom={false}

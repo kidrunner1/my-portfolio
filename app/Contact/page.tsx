@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useEffect, useState, JSX } from "react";
+import Image from "next/image";
+import { useEffect, JSX } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
@@ -76,15 +77,6 @@ function FeatureCard({
 /* ================= PAGE ================= */
 
 export default function ContactPage(): JSX.Element {
-
-    const [year, setYear] = useState<string>("");
-
-    useEffect(() => {
-        setYear(
-            new Date().getFullYear().toString()
-        );
-    }, []);
-
     useEffect(() => {
 
         AOS.init({
@@ -142,9 +134,11 @@ export default function ContactPage(): JSX.Element {
                     className="flex justify-center md:justify-end"
                 >
 
-                    <img
-                        src="https://images.unsplash.com/photo-1557804506-669a67965ba0"
+                    <Image
+                        src="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=800&q=80"
                         alt="Developer workspace"
+                        width={800}
+                        height={600}
                         className="rounded-2xl shadow-2xl
             w-full max-w-md object-cover aspect-[4/3]"
                     />
@@ -205,9 +199,11 @@ export default function ContactPage(): JSX.Element {
             >
 
                 <div>
-                    <img
+                    <Image
                         src="https://cdn.pixabay.com/photo/2018/02/08/10/22/desk-3139127_1280.jpg"
                         alt="Workspace"
+                        width={800}
+                        height={450}
                         className="rounded-2xl shadow-2xl
             w-full max-w-md object-cover aspect-video"
                     />
