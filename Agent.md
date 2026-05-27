@@ -7,7 +7,7 @@ This file gives future AI agents and contributors the project-specific context n
 - Framework: Next.js App Router
 - Language: TypeScript / TSX
 - Styling: Tailwind CSS v4
-- Animation: AOS
+- Animation: CSS transitions only; AOS was removed to improve Lighthouse performance
 - 3D visual: `three`, `three-globe`, `@react-three/fiber`, `@react-three/drei`
 - Package manager: npm
 - Primary visual direction: dark slate interface with teal, cyan, and rose accents
@@ -38,6 +38,7 @@ npm.cmd audit --audit-level=moderate
 - `app/Contact/page.tsx`: Contact page UI and CTA flow
 - `app/project_data/project.tsx`: Portfolio project data, including `role`, `year`, `status`, `impact`, and `stack`
 - `app/components/layout/Navbar.tsx`: Glass navbar with active route state and mobile menu
+- `app/components/LazyGlobe.tsx`: Defers the interactive globe and shows a lightweight static visual first
 - `app/components/GithubGlobe.tsx`: Globe route data and visual config
 - `app/components/ui/globe.tsx`: Three.js globe implementation
 - `app/globals.css`: Global Tailwind theme and font fallback
@@ -63,6 +64,8 @@ npm.cmd audit --audit-level=moderate
 - Globe colors should stay aligned with teal, cyan, rose, and slate.
 - Do not call `Math.random()` during render. Use deterministic data.
 - Globe material, atmosphere, arcs, rings, and auto-rotation are configured through `GlobeConfig`.
+- The interactive globe should not load immediately during first paint. Keep `LazyGlobe` in front of it.
+- On mobile and reduced-motion devices, prefer the static globe visual instead of the WebGL canvas.
 
 ## Coding Guidelines
 
@@ -73,6 +76,7 @@ npm.cmd audit --audit-level=moderate
 - Avoid `setState` in `useEffect` when the value can be derived or is unused.
 - If adding external image hosts, update `next.config.ts`.
 - If dependencies change, run `npm.cmd audit --audit-level=moderate`.
+- Do not reintroduce AOS or another scroll animation runtime unless there is a clear performance budget for it.
 - Preserve existing user changes. Do not revert unrelated work.
 
 ## Validation Checklist

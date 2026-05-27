@@ -57,7 +57,7 @@ export default function Home(): JSX.Element {
     <main className="min-h-screen overflow-hidden bg-[#07111f] text-white">
       <section className="relative border-b border-white/10 bg-[radial-gradient(circle_at_18%_20%,rgba(20,184,166,0.20),transparent_32%),radial-gradient(circle_at_82%_24%,rgba(244,63,94,0.16),transparent_30%),linear-gradient(135deg,#07111f_0%,#101827_48%,#111827_100%)]">
         <div className="mx-auto grid min-h-[calc(100vh-24px)] max-w-7xl grid-cols-1 items-center gap-10 px-6 pb-16 pt-28 sm:px-10 lg:grid-cols-[minmax(0,0.92fr)_minmax(420px,1.08fr)] lg:gap-12 lg:pt-24">
-          <div className="space-y-8" data-aos="fade-right">
+          <div className="space-y-8">
             <div className="inline-flex items-center gap-3 rounded-full border border-teal-300/25 bg-teal-300/10 px-4 py-2 text-sm font-medium text-teal-100">
               <span className="h-2 w-2 rounded-full bg-teal-300" />
               Available for Front-End and Web App projects
@@ -108,7 +108,7 @@ export default function Home(): JSX.Element {
             </div>
           </div>
 
-          <div className="relative min-h-[420px] lg:min-h-[580px]" data-aos="fade-left">
+          <div className="relative min-h-[420px] lg:min-h-[580px]">
             <div className="absolute inset-0 rounded-full bg-teal-300/5 blur-3xl" />
             <div className="absolute inset-x-8 top-8 h-px bg-linear-to-r from-transparent via-teal-200/50 to-transparent" />
             <div className="absolute left-0 top-24 z-10 rounded-lg border border-white/10 bg-slate-950/75 px-4 py-3 shadow-xl backdrop-blur">
@@ -137,7 +137,7 @@ export default function Home(): JSX.Element {
 
       <section className="border-b border-white/10 bg-slate-950 px-6 py-14 sm:px-10">
         <div className="mx-auto flex max-w-7xl flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
-          <div className="max-w-2xl" data-aos="fade-up">
+          <div className="max-w-2xl">
             <p className="text-sm font-semibold uppercase tracking-[0.24em] text-teal-300">
               Toolset
             </p>
@@ -146,7 +146,7 @@ export default function Home(): JSX.Element {
             </h2>
           </div>
 
-          <div className="flex max-w-3xl flex-wrap gap-3" data-aos="fade-up" data-aos-delay="100">
+          <div className="flex max-w-3xl flex-wrap gap-3">
             {skills.map((skill) => (
               <span
                 key={skill}
@@ -161,7 +161,7 @@ export default function Home(): JSX.Element {
 
       <section className="bg-[#0a1422] px-6 py-20 sm:px-10">
         <div className="mx-auto max-w-7xl">
-          <div className="max-w-3xl" data-aos="fade-up">
+          <div className="max-w-3xl">
             <p className="text-sm font-semibold uppercase tracking-[0.24em] text-rose-300">
               How I Work
             </p>
@@ -178,8 +178,6 @@ export default function Home(): JSX.Element {
               <article
                 key={item.title}
                 className="rounded-lg border border-white/10 bg-white/[0.04] p-6 transition hover:-translate-y-1 hover:border-teal-200/40 hover:bg-white/[0.06]"
-                data-aos="fade-up"
-                data-aos-delay={index * 100}
               >
                 <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-teal-300/10 text-sm font-bold text-teal-200">
                   0{index + 1}
@@ -194,7 +192,7 @@ export default function Home(): JSX.Element {
 
       <section className="bg-slate-950 px-6 py-20 sm:px-10">
         <div className="mx-auto max-w-7xl">
-          <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between" data-aos="fade-up">
+          <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
             <div className="max-w-3xl">
               <p className="text-sm font-semibold uppercase tracking-[0.24em] text-teal-300">
                 Selected Work
@@ -213,12 +211,10 @@ export default function Home(): JSX.Element {
           </div>
 
           <div className="mt-10 grid grid-cols-1 gap-5 lg:grid-cols-3">
-            {featuredProjects.map((project, index) => (
+            {featuredProjects.map((project) => (
               <article
                 key={project.title}
                 className="rounded-lg border border-white/10 bg-linear-to-b from-white/[0.07] to-white/[0.03] p-6"
-                data-aos="fade-up"
-                data-aos-delay={index * 100}
               >
                 <p className="text-sm font-semibold text-rose-200">{project.category}</p>
                 <h3 className="mt-4 text-2xl font-black text-white">{project.title}</h3>

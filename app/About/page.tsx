@@ -75,7 +75,7 @@ export default function AboutPage(): JSX.Element {
         <main className="min-h-screen overflow-hidden bg-[#07111f] text-white">
             <section className="border-b border-white/10 bg-[radial-gradient(circle_at_20%_18%,rgba(20,184,166,0.18),transparent_30%),radial-gradient(circle_at_86%_18%,rgba(244,63,94,0.14),transparent_28%),linear-gradient(135deg,#07111f_0%,#0f172a_52%,#111827_100%)] px-6 pb-20 pt-28 sm:px-10">
                 <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 lg:grid-cols-[minmax(0,0.95fr)_minmax(360px,0.75fr)]">
-                    <div className="space-y-8" data-aos="fade-right">
+                    <div className="space-y-8">
                         <div className="inline-flex items-center rounded-lg border border-teal-300/25 bg-teal-300/10 px-4 py-2 text-sm font-semibold text-teal-100">
                             About Krit Daowaset
                         </div>
@@ -102,7 +102,7 @@ export default function AboutPage(): JSX.Element {
                         </div>
                     </div>
 
-                    <div className="relative" data-aos="fade-left">
+                    <div className="relative">
                         <div className="absolute -inset-3 rounded-lg bg-linear-to-r from-teal-300/20 to-rose-300/20 blur-2xl" />
                         <div className="relative overflow-hidden rounded-lg border border-white/10 bg-white/[0.04] shadow-2xl shadow-black/30">
                             <Image
@@ -124,12 +124,10 @@ export default function AboutPage(): JSX.Element {
 
             <section className="border-b border-white/10 bg-slate-950 px-6 py-14 sm:px-10">
                 <div className="mx-auto grid max-w-7xl grid-cols-1 gap-4 md:grid-cols-4">
-                    {quickInfo.map((item, index) => (
+                    {quickInfo.map((item) => (
                         <div
                             key={item.label}
                             className="rounded-lg border border-white/10 bg-white/[0.04] p-5"
-                            data-aos="fade-up"
-                            data-aos-delay={index * 80}
                         >
                             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
                                 {item.label}
@@ -142,7 +140,7 @@ export default function AboutPage(): JSX.Element {
 
             <section className="bg-[#0a1422] px-6 py-20 sm:px-10">
                 <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 lg:grid-cols-[0.75fr_1fr] lg:items-start">
-                    <div data-aos="fade-right">
+                    <div>
                         <p className="text-sm font-semibold uppercase tracking-[0.24em] text-teal-300">
                             Stack & Skill
                         </p>
@@ -155,7 +153,7 @@ export default function AboutPage(): JSX.Element {
                         </p>
                     </div>
 
-                    <div className="flex flex-wrap gap-3" data-aos="fade-left">
+                    <div className="flex flex-wrap gap-3">
                         {techStack.map((skill) => (
                             <span
                                 key={skill}
@@ -170,7 +168,7 @@ export default function AboutPage(): JSX.Element {
 
             <section className="border-y border-white/10 bg-slate-950 px-6 py-20 sm:px-10">
                 <div className="mx-auto max-w-7xl">
-                    <div className="max-w-3xl" data-aos="fade-up">
+                    <div className="max-w-3xl">
                         <p className="text-sm font-semibold uppercase tracking-[0.24em] text-rose-300">
                             My Journey
                         </p>
@@ -180,12 +178,10 @@ export default function AboutPage(): JSX.Element {
                     </div>
 
                     <div className="mt-10 grid grid-cols-1 gap-5 lg:grid-cols-3">
-                        {journeyItems.map((item, index) => (
+                        {journeyItems.map((item) => (
                             <article
                                 key={item.step}
                                 className="rounded-lg border border-white/10 bg-linear-to-b from-white/[0.07] to-white/[0.03] p-6 transition hover:-translate-y-1 hover:border-teal-200/40"
-                                data-aos="fade-up"
-                                data-aos-delay={index * 100}
                             >
                                 <p className="text-sm font-black text-teal-200">{item.step}</p>
                                 <h3 className="mt-5 text-xl font-bold text-white">{item.title}</h3>
@@ -198,7 +194,7 @@ export default function AboutPage(): JSX.Element {
 
             <section className="bg-[#0a1422] px-6 py-20 sm:px-10">
                 <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 lg:grid-cols-[0.8fr_1fr] lg:items-center">
-                    <div className="space-y-4" data-aos="fade-right">
+                    <div className="space-y-4">
                         <p className="text-sm font-semibold uppercase tracking-[0.24em] text-teal-300">
                             Work Values
                         </p>
@@ -212,12 +208,10 @@ export default function AboutPage(): JSX.Element {
                     </div>
 
                     <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-                        {capabilities.map((item, index) => (
+                        {capabilities.map((item) => (
                             <article
                                 key={item.title}
                                 className="rounded-lg border border-white/10 bg-white/[0.04] p-5"
-                                data-aos="fade-up"
-                                data-aos-delay={index * 100}
                             >
                                 <h3 className="text-lg font-bold text-white">{item.title}</h3>
                                 <p className="mt-3 text-sm leading-7 text-slate-400">{item.text}</p>
@@ -229,7 +223,7 @@ export default function AboutPage(): JSX.Element {
 
             <section className="bg-slate-950 px-6 py-20 sm:px-10">
                 <div className="mx-auto max-w-7xl">
-                    <div className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between" data-aos="fade-up">
+                    <div className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
                         <div>
                             <p className="text-sm font-semibold uppercase tracking-[0.24em] text-rose-300">
                                 Location
@@ -245,7 +239,6 @@ export default function AboutPage(): JSX.Element {
 
                     <div
                         className="overflow-hidden rounded-lg border border-white/10 bg-white/[0.04] shadow-2xl shadow-black/30"
-                        data-aos="zoom-in"
                     >
                         <div className="h-[300px] w-full sm:h-[400px] md:h-[460px]">
                             <iframe

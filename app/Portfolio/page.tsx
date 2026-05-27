@@ -7,11 +7,13 @@ import projects, { type Project } from "../project_data/project";
 type ProjectImageCarouselProps = {
     images: string[];
     title: string;
+    priority?: boolean;
 };
 
 function ProjectImageCarousel({
     images,
     title,
+    priority = false,
 }: ProjectImageCarouselProps): JSX.Element {
     const [index, setIndex] = useState<number>(0);
 
@@ -40,7 +42,7 @@ function ProjectImageCarousel({
                     fill
                     sizes="(min-width: 1024px) 46vw, 100vw"
                     className="object-cover transition duration-500 group-hover:scale-[1.02]"
-                    priority={index === 0}
+                    priority={priority && index === 0}
                 />
             </div>
 
@@ -91,11 +93,13 @@ function ProjectCard({
     return (
         <article
             className="overflow-hidden rounded-lg border border-white/10 bg-white/[0.04] shadow-2xl shadow-black/20"
-            data-aos="fade-up"
-            data-aos-delay={(index % 2) * 120}
         >
             <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1.05fr)_minmax(360px,0.95fr)]">
-                <ProjectImageCarousel images={project.images} title={project.title} />
+                <ProjectImageCarousel
+                    images={project.images}
+                    title={project.title}
+                    priority={index === 0}
+                />
 
                 <div className="flex flex-col justify-between gap-8 p-6 sm:p-8">
                     <div className="space-y-5">
@@ -201,7 +205,7 @@ export default function PortfolioPage(): JSX.Element {
             <section className="border-b border-white/10 bg-[radial-gradient(circle_at_18%_18%,rgba(20,184,166,0.18),transparent_32%),radial-gradient(circle_at_82%_22%,rgba(244,63,94,0.14),transparent_28%),linear-gradient(135deg,#07111f_0%,#0f172a_52%,#111827_100%)] px-6 pb-16 pt-28 sm:px-10">
                 <div className="mx-auto max-w-7xl">
                     <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(360px,0.55fr)] lg:items-end">
-                        <div className="space-y-6" data-aos="fade-up">
+                        <div className="space-y-6">
                             <div className="inline-flex rounded-lg border border-teal-300/25 bg-teal-300/10 px-4 py-2 text-sm font-semibold text-teal-100">
                                 Selected Projects
                             </div>
@@ -220,7 +224,7 @@ export default function PortfolioPage(): JSX.Element {
                             </div>
                         </div>
 
-                        <div className="grid grid-cols-3 gap-3" data-aos="fade-left">
+                        <div className="grid grid-cols-3 gap-3">
                             <div className="rounded-lg border border-white/10 bg-white/[0.04] p-4">
                                 <p className="text-3xl font-black text-white">{projects.length}</p>
                                 <p className="mt-1 text-xs leading-5 text-slate-400">Featured projects</p>
