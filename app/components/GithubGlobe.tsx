@@ -3,8 +3,6 @@
 import dynamic from "next/dynamic";
 import { JSX } from "react";
 
-/* ---------- TYPES ---------- */
-
 type ArcData = {
     order: number;
     startLat: number;
@@ -16,9 +14,7 @@ type ArcData = {
 };
 
 type GlobeConfig = {
-    pointSize?: number;
     globeColor?: string;
-    showAtmosphere?: boolean;
     atmosphereColor?: string;
     atmosphereAltitude?: number;
     emissive?: string;
@@ -29,421 +25,133 @@ type GlobeConfig = {
     directionalLeftLight?: string;
     directionalTopLight?: string;
     pointLight?: string;
-    arcTime?: number;
-    arcLength?: number;
-    rings?: number;
-    maxRings?: number;
-    initialPosition?: {
-        lat: number;
-        lng: number;
-    };
-    autoRotate?: boolean;
+    arcDashLength?: number;
+    arcDashGap?: number;
+    arcDashAnimateTime?: number;
+    ringMaxRadius?: number;
+    ringRepeatPeriod?: number;
     autoRotateSpeed?: number;
 };
 
-/* ---------- FIXED IMPORT ---------- */
-
 const World = dynamic(
-    () => import("@/app/components/ui/globe").then(mod => mod.World),
+    () => import("@/app/components/ui/globe").then((mod) => mod.World),
     {
         ssr: false,
     }
 );
 
-/* ---------- COMPONENT ---------- */
+const routeColors = {
+    teal: "#2dd4bf",
+    cyan: "#67e8f9",
+    rose: "#fb7185",
+    slate: "#94a3b8",
+};
+
+const bangkok = {
+    lat: 13.7563,
+    lng: 100.5018,
+};
+
+const sampleArcs: ArcData[] = [
+    {
+        order: 1,
+        startLat: bangkok.lat,
+        startLng: bangkok.lng,
+        endLat: 1.3521,
+        endLng: 103.8198,
+        arcAlt: 0.18,
+        color: routeColors.teal,
+    },
+    {
+        order: 2,
+        startLat: bangkok.lat,
+        startLng: bangkok.lng,
+        endLat: 35.6762,
+        endLng: 139.6503,
+        arcAlt: 0.22,
+        color: routeColors.cyan,
+    },
+    {
+        order: 3,
+        startLat: bangkok.lat,
+        startLng: bangkok.lng,
+        endLat: 22.3193,
+        endLng: 114.1694,
+        arcAlt: 0.16,
+        color: routeColors.teal,
+    },
+    {
+        order: 4,
+        startLat: bangkok.lat,
+        startLng: bangkok.lng,
+        endLat: 37.7749,
+        endLng: -122.4194,
+        arcAlt: 0.38,
+        color: routeColors.rose,
+    },
+    {
+        order: 5,
+        startLat: bangkok.lat,
+        startLng: bangkok.lng,
+        endLat: 51.5072,
+        endLng: -0.1276,
+        arcAlt: 0.34,
+        color: routeColors.cyan,
+    },
+    {
+        order: 6,
+        startLat: 1.3521,
+        startLng: 103.8198,
+        endLat: 35.6762,
+        endLng: 139.6503,
+        arcAlt: 0.16,
+        color: routeColors.slate,
+    },
+    {
+        order: 7,
+        startLat: 22.3193,
+        startLng: 114.1694,
+        endLat: 37.7749,
+        endLng: -122.4194,
+        arcAlt: 0.28,
+        color: routeColors.rose,
+    },
+    {
+        order: 8,
+        startLat: 51.5072,
+        startLng: -0.1276,
+        endLat: 40.7128,
+        endLng: -74.006,
+        arcAlt: 0.18,
+        color: routeColors.teal,
+    },
+];
 
 export function GlobeDemo(): JSX.Element {
-
     const globeConfig: GlobeConfig = {
-        pointSize: 4,
-        globeColor: "#062056",
-        showAtmosphere: true,
-        atmosphereColor: "#FFFFFF",
-        atmosphereAltitude: 0.1,
-        emissive: "#062056",
-        emissiveIntensity: 0.1,
-        shininess: 0.9,
-        polygonColor: "rgba(255,255,255,0.7)",
-        ambientLight: "#38bdf8",
-        directionalLeftLight: "#ffffff",
+        globeColor: "#07111f",
+        atmosphereColor: "#2dd4bf",
+        atmosphereAltitude: 0.16,
+        emissive: "#0f766e",
+        emissiveIntensity: 0.18,
+        shininess: 0.55,
+        polygonColor: "rgba(148, 163, 184, 0.34)",
+        ambientLight: "#67e8f9",
+        directionalLeftLight: "#fb7185",
         directionalTopLight: "#ffffff",
-        pointLight: "#ffffff",
-        arcTime: 1000,
-        arcLength: 0.9,
-        rings: 1,
-        maxRings: 3,
-        initialPosition: { lat: 22.3193, lng: 114.1694 },
-        autoRotate: true,
-        autoRotateSpeed: 0.5,
+        pointLight: "#2dd4bf",
+        arcDashLength: 0.72,
+        arcDashGap: 10,
+        arcDashAnimateTime: 2600,
+        ringMaxRadius: 4.2,
+        ringRepeatPeriod: 2400,
+        autoRotateSpeed: 0.34,
     };
 
-    const colors = ["#06b6d4", "#3b82f6", "#6366f1"];
-
-    const sampleArcs: ArcData[] = [
-        {
-            order: 1,
-            startLat: -19.885592,
-            startLng: -43.951191,
-            endLat: -22.9068,
-            endLng: -43.1729,
-            arcAlt: 0.1,
-            color: colors[0],
-        },
-        {
-            order: 1,
-            startLat: 28.6139,
-            startLng: 77.209,
-            endLat: 3.139,
-            endLng: 101.6869,
-            arcAlt: 0.2,
-            color: colors[1],
-        },
-        {
-            order: 1,
-            startLat: -19.885592,
-            startLng: -43.951191,
-            endLat: -1.303396,
-            endLng: 36.852443,
-            arcAlt: 0.5,
-            color: colors[2],
-        },
-        {
-            order: 2,
-            startLat: 1.3521,
-            startLng: 103.8198,
-            endLat: 35.6762,
-            endLng: 139.6503,
-            arcAlt: 0.2,
-            color: colors[0],
-        },
-        {
-            order: 2,
-            startLat: 51.5072,
-            startLng: -0.1276,
-            endLat: 3.139,
-            endLng: 101.6869,
-            arcAlt: 0.3,
-            color: colors[1],
-        },
-        {
-            order: 2,
-            startLat: -15.785493,
-            startLng: -47.909029,
-            endLat: 36.162809,
-            endLng: -115.119411,
-            arcAlt: 0.3,
-            color: colors[2],
-        },
-        {
-            order: 3,
-            startLat: -33.8688,
-            startLng: 151.2093,
-            endLat: 22.3193,
-            endLng: 114.1694,
-            arcAlt: 0.3,
-            color: colors[0],
-        },
-        {
-            order: 3,
-            startLat: 21.3099,
-            startLng: -157.8581,
-            endLat: 40.7128,
-            endLng: -74.006,
-            arcAlt: 0.3,
-            color: colors[1],
-        },
-        {
-            order: 3,
-            startLat: -6.2088,
-            startLng: 106.8456,
-            endLat: 51.5072,
-            endLng: -0.1276,
-            arcAlt: 0.3,
-            color: colors[2],
-        },
-        {
-            order: 4,
-            startLat: 11.986597,
-            startLng: 8.571831,
-            endLat: -15.595412,
-            endLng: -56.05918,
-            arcAlt: 0.5,
-            color: colors[0],
-        },
-        {
-            order: 4,
-            startLat: -34.6037,
-            startLng: -58.3816,
-            endLat: 22.3193,
-            endLng: 114.1694,
-            arcAlt: 0.7,
-            color: colors[1],
-        },
-        {
-            order: 4,
-            startLat: 51.5072,
-            startLng: -0.1276,
-            endLat: 48.8566,
-            endLng: -2.3522,
-            arcAlt: 0.1,
-            color: colors[2],
-        },
-        {
-            order: 5,
-            startLat: 14.5995,
-            startLng: 120.9842,
-            endLat: 51.5072,
-            endLng: -0.1276,
-            arcAlt: 0.3,
-            color: colors[0],
-        },
-        {
-            order: 5,
-            startLat: 1.3521,
-            startLng: 103.8198,
-            endLat: -33.8688,
-            endLng: 151.2093,
-            arcAlt: 0.2,
-            color: colors[1],
-        },
-        {
-            order: 5,
-            startLat: 34.0522,
-            startLng: -118.2437,
-            endLat: 48.8566,
-            endLng: -2.3522,
-            arcAlt: 0.2,
-            color: colors[2],
-        },
-        {
-            order: 6,
-            startLat: -15.432563,
-            startLng: 28.315853,
-            endLat: 1.094136,
-            endLng: -63.34546,
-            arcAlt: 0.7,
-            color: colors[0],
-        },
-        {
-            order: 6,
-            startLat: 37.5665,
-            startLng: 126.978,
-            endLat: 35.6762,
-            endLng: 139.6503,
-            arcAlt: 0.1,
-            color: colors[1],
-        },
-        {
-            order: 6,
-            startLat: 22.3193,
-            startLng: 114.1694,
-            endLat: 51.5072,
-            endLng: -0.1276,
-            arcAlt: 0.3,
-            color: colors[2],
-        },
-        {
-            order: 7,
-            startLat: -19.885592,
-            startLng: -43.951191,
-            endLat: -15.595412,
-            endLng: -56.05918,
-            arcAlt: 0.1,
-            color: colors[0],
-        },
-        {
-            order: 7,
-            startLat: 48.8566,
-            startLng: -2.3522,
-            endLat: 52.52,
-            endLng: 13.405,
-            arcAlt: 0.1,
-            color: colors[1],
-        },
-        {
-            order: 7,
-            startLat: 52.52,
-            startLng: 13.405,
-            endLat: 34.0522,
-            endLng: -118.2437,
-            arcAlt: 0.2,
-            color: colors[2],
-        },
-        {
-            order: 8,
-            startLat: -8.833221,
-            startLng: 13.264837,
-            endLat: -33.936138,
-            endLng: 18.436529,
-            arcAlt: 0.2,
-            color: colors[0],
-        },
-        {
-            order: 8,
-            startLat: 49.2827,
-            startLng: -123.1207,
-            endLat: 52.3676,
-            endLng: 4.9041,
-            arcAlt: 0.2,
-            color: colors[1],
-        },
-        {
-            order: 8,
-            startLat: 1.3521,
-            startLng: 103.8198,
-            endLat: 40.7128,
-            endLng: -74.006,
-            arcAlt: 0.5,
-            color: colors[2],
-        },
-        {
-            order: 9,
-            startLat: 51.5072,
-            startLng: -0.1276,
-            endLat: 34.0522,
-            endLng: -118.2437,
-            arcAlt: 0.2,
-            color: colors[0],
-        },
-        {
-            order: 9,
-            startLat: 22.3193,
-            startLng: 114.1694,
-            endLat: -22.9068,
-            endLng: -43.1729,
-            arcAlt: 0.7,
-            color: colors[1],
-        },
-        {
-            order: 9,
-            startLat: 1.3521,
-            startLng: 103.8198,
-            endLat: -34.6037,
-            endLng: -58.3816,
-            arcAlt: 0.5,
-            color: colors[2],
-        },
-        {
-            order: 10,
-            startLat: -22.9068,
-            startLng: -43.1729,
-            endLat: 28.6139,
-            endLng: 77.209,
-            arcAlt: 0.7,
-            color: colors[0],
-        },
-        {
-            order: 10,
-            startLat: 34.0522,
-            startLng: -118.2437,
-            endLat: 31.2304,
-            endLng: 121.4737,
-            arcAlt: 0.3,
-            color: colors[1],
-        },
-        {
-            order: 10,
-            startLat: -6.2088,
-            startLng: 106.8456,
-            endLat: 52.3676,
-            endLng: 4.9041,
-            arcAlt: 0.3,
-            color: colors[2],
-        },
-        {
-            order: 11,
-            startLat: 41.9028,
-            startLng: 12.4964,
-            endLat: 34.0522,
-            endLng: -118.2437,
-            arcAlt: 0.2,
-            color: colors[0],
-        },
-        {
-            order: 11,
-            startLat: -6.2088,
-            startLng: 106.8456,
-            endLat: 31.2304,
-            endLng: 121.4737,
-            arcAlt: 0.2,
-            color: colors[1],
-        },
-        {
-            order: 11,
-            startLat: 22.3193,
-            startLng: 114.1694,
-            endLat: 1.3521,
-            endLng: 103.8198,
-            arcAlt: 0.2,
-            color: colors[2],
-        },
-        {
-            order: 12,
-            startLat: 34.0522,
-            startLng: -118.2437,
-            endLat: 37.7749,
-            endLng: -122.4194,
-            arcAlt: 0.1,
-            color: colors[0],
-        },
-        {
-            order: 12,
-            startLat: 35.6762,
-            startLng: 139.6503,
-            endLat: 22.3193,
-            endLng: 114.1694,
-            arcAlt: 0.2,
-            color: colors[1],
-        },
-        {
-            order: 12,
-            startLat: 22.3193,
-            startLng: 114.1694,
-            endLat: 34.0522,
-            endLng: -118.2437,
-            arcAlt: 0.3,
-            color: colors[2],
-        },
-        {
-            order: 13,
-            startLat: 52.52,
-            startLng: 13.405,
-            endLat: 22.3193,
-            endLng: 114.1694,
-            arcAlt: 0.3,
-            color: colors[0],
-        },
-        {
-            order: 13,
-            startLat: 11.986597,
-            startLng: 8.571831,
-            endLat: 35.6762,
-            endLng: 139.6503,
-            arcAlt: 0.3,
-            color: colors[1],
-        },
-        {
-            order: 13,
-            startLat: -22.9068,
-            startLng: -43.1729,
-            endLat: -34.6037,
-            endLng: -58.3816,
-            arcAlt: 0.1,
-            color: colors[2],
-        },
-        {
-            order: 14,
-            startLat: -33.936138,
-            startLng: 18.436529,
-            endLat: 21.395643,
-            endLng: 39.883798,
-            arcAlt: 0.3,
-            color: colors[0],
-        },
-    ];
-
     return (
-        <div className="w-full h-full">
+        <div className="relative h-full w-full">
+            <div className="absolute inset-6 rounded-full bg-teal-300/10 blur-3xl" />
+            <div className="absolute inset-x-10 bottom-8 h-24 rounded-full bg-rose-400/10 blur-3xl" />
             <World
                 data={sampleArcs}
                 globeConfig={globeConfig}

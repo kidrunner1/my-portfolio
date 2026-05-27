@@ -20,10 +20,22 @@ export type ArcData = {
 };
 
 export type GlobeConfig = {
+    globeColor?: string;
+    atmosphereColor?: string;
+    atmosphereAltitude?: number;
+    emissive?: string;
+    emissiveIntensity?: number;
+    shininess?: number;
+    polygonColor?: string;
     ambientLight?: string;
     directionalLeftLight?: string;
     directionalTopLight?: string;
     pointLight?: string;
+    arcDashLength?: number;
+    arcDashGap?: number;
+    arcDashAnimateTime?: number;
+    ringMaxRadius?: number;
+    ringRepeatPeriod?: number;
     autoRotateSpeed?: number;
 };
 
@@ -40,13 +52,15 @@ type RingData = {
 /* ================= CONSTANTS ================= */
 
 const RING_PROPAGATION_SPEED = 3;
-const cameraZ = 300;
+const cameraZ = 285;
 
 /* ================= GLOBE ================= */
 
 function Globe({
+    globeConfig,
     data,
 }: {
+    globeConfig: GlobeConfig;
     data: ArcData[];
 }): JSX.Element {
 
@@ -57,11 +71,11 @@ function Globe({
     useEffect(() => {
         const material = globe.globeMaterial() as MeshPhongMaterial;
 
-        material.color = new Color("#1d072e");
-        material.emissive = new Color("#000000");
-        material.emissiveIntensity = 0.1;
-        material.shininess = 0.9;
-    }, [globe]);
+        material.color = new Color(globeConfig.globeColor ?? "#07111f");
+        material.emissive = new Color(globeConfig.emissive ?? "#0f766e");
+        material.emissiveIntensity = globeConfig.emissiveIntensity ?? 0.16;
+        material.shininess = globeConfig.shininess ?? 0.55;
+    }, [globe, globeConfig]);
 
     /* ---------- MAP + ARCS ---------- */
 
@@ -69,11 +83,11 @@ function Globe({
         globe
             .hexPolygonsData((countries as GlobeCountries).features)
             .hexPolygonResolution(3)
-            .hexPolygonMargin(0.7)
+            .hexPolygonMargin(0.62)
             .showAtmosphere(true)
-            .atmosphereColor("#ffffff")
-            .atmosphereAltitude(0.1)
-            .hexPolygonColor(() => "rgba(255,255,255,0.7)");
+            .atmosphereColor(globeConfig.atmosphereColor ?? "#2dd4bf")
+            .atmosphereAltitude(globeConfig.atmosphereAltitude ?? 0.14)
+            .hexPolygonColor(() => globeConfig.polygonColor ?? "rgba(148, 163, 184, 0.34)");
 
         globe
             .arcsData(data)
@@ -83,11 +97,11 @@ function Globe({
             .arcEndLng((d: object) => (d as ArcData).endLng)
             .arcColor((d: object) => (d as ArcData).color)
             .arcAltitude((d: object) => (d as ArcData).arcAlt)
-            .arcDashLength(0.9)
-            .arcDashGap(15)
-            .arcDashAnimateTime(2000);
+            .arcDashLength(globeConfig.arcDashLength ?? 0.72)
+            .arcDashGap(globeConfig.arcDashGap ?? 10)
+            .arcDashAnimateTime(globeConfig.arcDashAnimateTime ?? 2600);
 
-    }, [globe, data]);
+    }, [globe, globeConfig, data]);
 
     /* ---------- RINGS ---------- */
 
@@ -103,15 +117,15 @@ function Globe({
             globe
                 .ringsData(ringsData)
                 .ringColor((e: object) => (e as RingData).color)
-                .ringMaxRadius(5)
+                .ringMaxRadius(globeConfig.ringMaxRadius ?? 4.2)
                 .ringPropagationSpeed(RING_PROPAGATION_SPEED)
-                .ringRepeatPeriod(2000);
+                .ringRepeatPeriod(globeConfig.ringRepeatPeriod ?? 2400);
 
         }, 2000);
 
         return () => clearInterval(interval);
 
-    }, [globe, data]);
+    }, [globe, globeConfig, data]);
 
     return (
         <primitive object={globe} />
@@ -131,7 +145,7 @@ export function World({
     return (
         <Canvas
             camera={{ position: [0, 0, cameraZ], fov: 50 }}
-            frameloop="always" // ✅ สำคัญ
+            frameloop="always"
         >
 
             <ambientLight
@@ -154,10 +168,11 @@ export function World({
                 position={[-200, 500, 200]}
             />
 
-            <Globe data={data} />
+            <Globe globeConfig={globeConfig} data={data} />
 
             <OrbitControls
                 enableZoom={false}
+                enablePan={false}
                 autoRotate
                 autoRotateSpeed={
                     globeConfig.autoRotateSpeed ?? 0.5
