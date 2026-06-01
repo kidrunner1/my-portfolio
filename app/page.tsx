@@ -1,4 +1,5 @@
 import { JSX } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import LazyGlobe from "./components/LazyGlobe";
 
@@ -38,16 +39,25 @@ const featuredProjects = [
   {
     title: "KICKS VAULT",
     category: "Full-Stack Web App",
+    image: "/images/Project/kicks1.png",
+    proof: "Live commerce flow",
+    stack: ["Next.js", "Prisma", "PostgreSQL"],
     text: "Luxury sneaker store พร้อม authentication, cart, order และ UI แบบ premium",
   },
   {
     title: "CHEMIMONITORING",
     category: "Dashboard",
+    image: "/images/Project/CHEMI1.png",
+    proof: "Field data dashboard",
+    stack: ["React", "Dashboard UI", "Tailwind"],
     text: "ระบบติดตามข้อมูลภาคสนามผ่าน web dashboard ที่เน้นความชัดเจนและใช้งานจริง",
   },
   {
     title: "Power Of Enrichment",
     category: "Mobile App",
+    image: "/images/Project/M1.png",
+    proof: "Learning flow design",
+    stack: ["React Native", "Expo", "Mobile UI"],
     text: "แอปฝึกทักษะภาษาอังกฤษที่ออกแบบ flow ให้เรียนง่ายและเข้าถึงเร็ว",
   },
 ];
@@ -81,7 +91,7 @@ export default function Home(): JSX.Element {
             <div className="flex flex-col gap-3 sm:flex-row">
               <Link
                 href="/Portfolio"
-                className="inline-flex h-12 items-center justify-center rounded-lg bg-teal-400 px-6 text-sm font-bold text-slate-950 shadow-lg shadow-teal-950/30 transition hover:bg-teal-300 focus:outline-none focus:ring-2 focus:ring-teal-200 focus:ring-offset-2 focus:ring-offset-slate-950"
+                className="inline-flex h-12 items-center justify-center rounded-lg bg-teal-400 px-6 text-sm font-bold text-[#07111f] shadow-lg shadow-teal-950/30 transition hover:bg-teal-300 focus:outline-none focus:ring-2 focus:ring-teal-200 focus:ring-offset-2 focus:ring-offset-slate-950"
               >
                 ดูผลงานของผม
               </Link>
@@ -111,21 +121,23 @@ export default function Home(): JSX.Element {
           <div className="relative min-h-[420px] lg:min-h-[580px]">
             <div className="absolute inset-0 rounded-full bg-teal-300/5 blur-3xl" />
             <div className="absolute inset-x-8 top-8 h-px bg-linear-to-r from-transparent via-teal-200/50 to-transparent" />
-            <div className="absolute left-0 top-24 z-10 rounded-lg border border-white/10 bg-slate-950/75 px-4 py-3 shadow-xl backdrop-blur">
-              <p className="text-sm font-bold text-white">Design {"->"} Build {"->"} Ship</p>
-              <p className="mt-1 text-xs text-slate-400">From Thailand to global web standards</p>
-            </div>
-            <div className="absolute bottom-10 left-0 z-10 max-w-[280px] rounded-lg border border-white/10 bg-slate-950/80 p-4 shadow-2xl shadow-black/30 backdrop-blur">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-teal-200">
-                Current Focus
-              </p>
-              <p className="mt-2 text-sm leading-6 text-slate-300">
-                สร้าง portfolio และ product UI ที่เร็ว สวย ใช้งานง่าย และเล่า value ของงานได้ในไม่กี่วินาที
-              </p>
-            </div>
-            <div className="absolute right-0 top-8 z-10 rounded-lg border border-white/10 bg-white/[0.06] px-4 py-3 shadow-xl backdrop-blur">
-              <p className="text-sm font-bold text-white">Production Mindset</p>
-              <p className="mt-1 text-xs text-slate-400">Lint, Build, Audit, Deploy</p>
+            <div className="absolute inset-x-4 bottom-6 z-10 rounded-lg border border-white/10 bg-slate-950/82 p-4 shadow-2xl shadow-black/30 backdrop-blur">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                  <p className="text-sm font-bold text-white">Design {"->"} Build {"->"} Ship</p>
+                  <p className="mt-1 text-xs text-slate-400">From Thailand to global web standards</p>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {["UX first", "Build ready", "Ship mindset"].map((item) => (
+                    <span
+                      key={item}
+                      className="rounded-md border border-teal-200/20 bg-teal-300/10 px-2.5 py-1 text-xs font-bold text-teal-100"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
             <div className="relative h-[430px] sm:h-[560px] lg:h-[620px]">
               <LazyGlobe />
@@ -214,11 +226,37 @@ export default function Home(): JSX.Element {
             {featuredProjects.map((project) => (
               <article
                 key={project.title}
-                className="rounded-lg border border-white/10 bg-linear-to-b from-white/[0.07] to-white/[0.03] p-6"
+                className="overflow-hidden rounded-lg border border-white/10 bg-linear-to-b from-white/[0.07] to-white/[0.03]"
               >
-                <p className="text-sm font-semibold text-rose-200">{project.category}</p>
-                <h3 className="mt-4 text-2xl font-black text-white">{project.title}</h3>
-                <p className="mt-4 text-sm leading-7 text-slate-400">{project.text}</p>
+                <div className="relative aspect-[16/10] overflow-hidden border-b border-white/10 bg-slate-950">
+                  <Image
+                    src={project.image}
+                    alt={`${project.title} project preview`}
+                    fill
+                    sizes="(min-width: 1024px) 33vw, 100vw"
+                    className="object-cover transition duration-500 hover:scale-[1.02]"
+                  />
+                  <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-slate-950 via-slate-950/70 to-transparent p-4">
+                    <span className="inline-flex rounded-md border border-teal-200/25 bg-teal-300/10 px-3 py-1 text-xs font-bold text-teal-100">
+                      {project.proof}
+                    </span>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <p className="text-sm font-semibold text-rose-200">{project.category}</p>
+                  <h3 className="mt-4 text-2xl font-black text-white">{project.title}</h3>
+                  <p className="mt-4 text-sm leading-7 text-slate-400">{project.text}</p>
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {project.stack.map((item) => (
+                      <span
+                        key={item}
+                        className="rounded-md border border-white/10 bg-white/[0.04] px-3 py-1 text-xs font-semibold text-slate-300"
+                      >
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               </article>
             ))}
           </div>

@@ -1,0 +1,224 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-06-01T12:20:31.7598549+07:00",
+  "title": "Design System: Krit Daowaset Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "deep-ink": {
+        "role": "neutral",
+        "displayName": "Deep Ink",
+        "canonical": "#07111f",
+        "tonalRamp": ["oklch(15% 0.035 250)", "oklch(22% 0.035 250)", "oklch(30% 0.035 250)", "oklch(40% 0.03 250)", "oklch(55% 0.025 250)", "oklch(70% 0.018 250)", "oklch(85% 0.012 250)", "oklch(95% 0.006 250)"]
+      },
+      "section-ink": {
+        "role": "neutral",
+        "displayName": "Section Ink",
+        "canonical": "#0a1422",
+        "tonalRamp": ["oklch(16% 0.035 250)", "oklch(23% 0.035 250)", "oklch(32% 0.03 250)", "oklch(44% 0.026 250)", "oklch(58% 0.02 250)", "oklch(72% 0.016 250)", "oklch(86% 0.01 250)", "oklch(96% 0.004 250)"]
+      },
+      "teal-signal": {
+        "role": "primary",
+        "displayName": "Teal Signal",
+        "canonical": "#2dd4bf",
+        "tonalRamp": ["oklch(18% 0.07 185)", "oklch(28% 0.09 185)", "oklch(40% 0.11 185)", "oklch(52% 0.13 185)", "oklch(64% 0.14 185)", "oklch(76% 0.12 185)", "oklch(88% 0.08 185)", "oklch(96% 0.035 185)"]
+      },
+      "rose-signal": {
+        "role": "secondary",
+        "displayName": "Rose Signal",
+        "canonical": "#fb7185",
+        "tonalRamp": ["oklch(18% 0.07 15)", "oklch(30% 0.10 15)", "oklch(42% 0.13 15)", "oklch(54% 0.15 15)", "oklch(66% 0.16 15)", "oklch(78% 0.13 15)", "oklch(89% 0.075 15)", "oklch(96% 0.035 15)"]
+      },
+      "cyan-route": {
+        "role": "tertiary",
+        "displayName": "Cyan Route",
+        "canonical": "#67e8f9",
+        "tonalRamp": ["oklch(18% 0.06 215)", "oklch(30% 0.08 215)", "oklch(42% 0.10 215)", "oklch(56% 0.12 215)", "oklch(70% 0.12 215)", "oklch(82% 0.09 215)", "oklch(91% 0.055 215)", "oklch(97% 0.025 215)"]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hero statements and major page introductions only."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section headings and supporting page anchors."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Readable Thai and English explanatory prose."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Short uppercase metadata and badges only."
+      }
+    },
+    "shadows": [
+      {
+        "name": "nav-shell",
+        "value": "0 25px 50px -12px rgba(0, 0, 0, 0.30)",
+        "purpose": "Fixed navbar and floating shell surfaces."
+      },
+      {
+        "name": "panel-lift",
+        "value": "0 25px 50px -12px rgba(0, 0, 0, 0.30)",
+        "purpose": "Image frames and substantial project cards."
+      },
+      {
+        "name": "cta-glow",
+        "value": "0 10px 15px -3px rgba(19, 78, 74, 0.30)",
+        "purpose": "Primary teal calls to action."
+      },
+      {
+        "name": "globe-halo",
+        "value": "0 0 80px rgba(45, 212, 191, 0.18)",
+        "purpose": "Global craft visual and reduced-motion placeholder."
+      }
+    ],
+    "motion": [
+      {
+        "name": "state-standard",
+        "value": "transition 150ms-300ms ease",
+        "purpose": "Default hover, focus, and menu expansion behavior."
+      },
+      {
+        "name": "lift-hover",
+        "value": "translateY(-4px)",
+        "purpose": "Card hover feedback where the element is clickable or scan-worthy."
+      },
+      {
+        "name": "globe-idle",
+        "value": "autoRotateSpeed 0.34, arcDashAnimateTime 2600ms",
+        "purpose": "Signature globe motion, disabled or replaced by placeholder on mobile and reduced motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Main action button for portfolio and contact flows.",
+      "html": "<button class=\"ds-btn-primary\">View Projects</button>",
+      "css": ".ds-btn-primary{height:48px;display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:8px;background:#2dd4bf;color:#020617;padding:0 24px;font:700 14px/1.2 Leelawadee UI,Tahoma,Noto Sans Thai,Noto Sans,Arial,sans-serif;box-shadow:0 10px 15px -3px rgba(19,78,74,.30);transition:background .2s ease,transform .2s ease}.ds-btn-primary:hover{background:#5eead4;transform:translateY(-1px)}.ds-btn-primary:focus-visible{outline:2px solid #99f6e4;outline-offset:3px}"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Quiet action for GitHub, contact, and secondary navigation.",
+      "html": "<button class=\"ds-btn-secondary\">Contact</button>",
+      "css": ".ds-btn-secondary{height:48px;display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.15);border-radius:8px;background:rgba(255,255,255,.05);color:#fff;padding:0 24px;font:700 14px/1.2 Leelawadee UI,Tahoma,Noto Sans Thai,Noto Sans,Arial,sans-serif;transition:background .2s ease,border-color .2s ease}.ds-btn-secondary:hover{border-color:rgba(255,255,255,.30);background:rgba(255,255,255,.10)}.ds-btn-secondary:focus-visible{outline:2px solid rgba(255,255,255,.50);outline-offset:3px}"
+    },
+    {
+      "name": "Accent Chip",
+      "kind": "chip",
+      "refersTo": "chip-accent",
+      "description": "Small proof or category marker with restrained teal emphasis.",
+      "html": "<span class=\"ds-chip-accent\">Selected Projects</span>",
+      "css": ".ds-chip-accent{display:inline-flex;align-items:center;border:1px solid rgba(45,212,191,.25);border-radius:8px;background:rgba(45,212,191,.10);color:#ccfbf1;padding:8px 16px;font:600 14px/1.2 Leelawadee UI,Tahoma,Noto Sans Thai,Noto Sans,Arial,sans-serif}"
+    },
+    {
+      "name": "Translucent Card",
+      "kind": "card",
+      "refersTo": "card-default",
+      "description": "Default repeated content surface for stats, values, and project summaries.",
+      "html": "<article class=\"ds-card\"><p class=\"ds-card-kicker\">Focus</p><h3>UX Thinking</h3><p>Clear hierarchy, responsive behavior, and production-ready details.</p></article>",
+      "css": ".ds-card{border:1px solid rgba(255,255,255,.10);border-radius:8px;background:rgba(255,255,255,.04);padding:24px;color:#cbd5e1;font-family:Leelawadee UI,Tahoma,Noto Sans Thai,Noto Sans,Arial,sans-serif;transition:background .2s ease,border-color .2s ease,transform .2s ease}.ds-card:hover{border-color:rgba(153,246,228,.40);background:rgba(255,255,255,.06);transform:translateY(-4px)}.ds-card h3{margin:12px 0 0;color:#fff;font-size:20px;line-height:1.4;font-weight:700}.ds-card p{margin:12px 0 0;font-size:14px;line-height:1.75}.ds-card-kicker{margin:0;color:#5eead4;font-size:12px;font-weight:700;letter-spacing:.20em;text-transform:uppercase}"
+    },
+    {
+      "name": "Portfolio Nav Shell",
+      "kind": "nav",
+      "refersTo": "nav-shell",
+      "description": "Fixed centered navigation with translucent dark shell and active white links.",
+      "html": "<nav class=\"ds-nav\"><span class=\"ds-logo\">KD</span><a class=\"ds-nav-link ds-active\">Home</a><a class=\"ds-nav-link\">Projects</a><button class=\"ds-nav-cta\">Contact</button></nav>",
+      "css": ".ds-nav{display:flex;align-items:center;gap:12px;border:1px solid rgba(255,255,255,.10);border-radius:8px;background:rgba(2,6,23,.82);padding:12px;box-shadow:0 25px 50px -12px rgba(0,0,0,.30);backdrop-filter:blur(24px);font-family:Leelawadee UI,Tahoma,Noto Sans Thai,Noto Sans,Arial,sans-serif}.ds-logo{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:8px;background:#5eead4;color:#020617;font-weight:900}.ds-nav-link{border-radius:6px;padding:8px 16px;color:#cbd5e1;font-size:14px;font-weight:700;text-decoration:none}.ds-nav-link:hover{background:rgba(255,255,255,.06);color:#fff}.ds-nav-link.ds-active{background:#fff;color:#020617}.ds-nav-cta{height:40px;border:0;border-radius:8px;background:#2dd4bf;color:#020617;padding:0 20px;font-size:14px;font-weight:900}"
+    },
+    {
+      "name": "Globe Placeholder",
+      "kind": "custom",
+      "refersTo": "globe-visual",
+      "description": "Reduced-motion or loading state for the signature global craft visual.",
+      "html": "<div class=\"ds-globe-placeholder\"><div class=\"ds-globe-halo\"></div><div class=\"ds-globe-ring\"></div><span>Global web craft</span></div>",
+      "css": ".ds-globe-placeholder{position:relative;display:flex;min-height:320px;align-items:center;justify-content:center;overflow:hidden;border:1px solid rgba(255,255,255,.10);border-radius:8px;background:rgba(2,6,23,.45);color:#64748b;font:600 12px/1.4 Leelawadee UI,Tahoma,Noto Sans Thai,Noto Sans,Arial,sans-serif;letter-spacing:.22em;text-transform:uppercase}.ds-globe-halo{position:absolute;width:256px;height:256px;border-radius:9999px;border:1px solid rgba(153,246,228,.20);background:rgba(45,212,191,.05);box-shadow:0 0 80px rgba(45,212,191,.18)}.ds-globe-ring{position:absolute;width:176px;height:176px;border-radius:9999px;border:1px solid rgba(254,205,211,.10)}.ds-globe-placeholder span{position:relative}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Global Craft Console",
+    "overview": "This system should feel like a focused developer cockpit: dark, precise, responsive, and globally connected. The globe visual is not decoration; it carries the story of Thai craft meeting international web standards. The page should feel production-ready before the visitor reads a sentence. The interface uses a deep navy base, crisp white hierarchy, translucent panels, and teal action signals. Rose and cyan appear as route lights, proof markers, and secondary energy, not as competing brand colors. The design rejects generic portfolio templates, cluttered resume pages, and loud saturated color for its own sake.",
+    "keyCharacteristics": [
+      "Dark technical atmosphere with calm, readable contrast.",
+      "Teal-led action system supported by rare rose and cyan route signals.",
+      "Compact 8px radius surfaces with subtle borders and glass-like depth.",
+      "Large confident headlines paired with long-line Thai/English body readability.",
+      "Motion and 3D presence that support proof of craft without hurting performance."
+    ],
+    "rules": [
+      {
+        "name": "The Teal Means Action Rule",
+        "body": "Teal is reserved for actions, active states, proof markers, and the globe's sense of motion. Do not spend it on random decoration.",
+        "section": "colors"
+      },
+      {
+        "name": "The Rose Is A Signal Rule",
+        "body": "Rose should appear as a rare secondary cue. If every section has rose, the system becomes noisy.",
+        "section": "colors"
+      },
+      {
+        "name": "The Dark Surface Rule",
+        "body": "Keep page bases in the deep navy family. Do not drift into black-only, purple-blue gradients, beige, or generic SaaS gray.",
+        "section": "colors"
+      },
+      {
+        "name": "The Thai Readability Rule",
+        "body": "Body copy must breathe. Keep line-height generous and never compress Thai text to chase a tighter layout.",
+        "section": "typography"
+      },
+      {
+        "name": "The Label Rarity Rule",
+        "body": "Uppercase tracked labels are allowed, but they must not become a repeated crutch above every heading.",
+        "section": "typography"
+      },
+      {
+        "name": "The Layer First Rule",
+        "body": "Use background opacity, border, blur, and contrast before adding heavier shadow.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Shadow Has A Job Rule",
+        "body": "Shadows appear on nav, image frames, CTAs, and globe elements. Flat repeated cards should rely on borders and tonal fill.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do keep the primary page atmosphere in deep navy (`deep-ink` and `section-ink`) with high-contrast white and slate text.",
+      "Do use teal for primary CTAs, active filters, focus rings, and proof markers.",
+      "Do keep cards restrained: 8px radius, 1px low-opacity border, translucent fill, and only meaningful shadow.",
+      "Do treat the globe as a brand proof object. It should reinforce front-end craft and international reach.",
+      "Do preserve mobile readability with generous line-height and stable spacing.",
+      "Do respect `prefers-reduced-motion` for globe loading and any future animated UI."
+    ],
+    "donts": [
+      "Don't make the site look like a generic portfolio template.",
+      "Don't make the page cluttered, noisy, or packed with unrelated decorative panels.",
+      "Don't turn the portfolio into a rigid job-application page.",
+      "Don't use overly loud, gimmicky, or harsh saturated color.",
+      "Don't overuse rose, cyan, glow, blur, or glass effects until every surface competes for attention.",
+      "Don't replace evidence with vague claims. Project cards, screenshots, and outcomes must stay central."
+    ]
+  }
+}

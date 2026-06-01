@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { JSX } from "react";
+import AnimatedCodeWindow from "../components/AnimatedCodeWindow";
 
 type InfoItem = {
     label: string;
@@ -102,23 +102,7 @@ export default function AboutPage(): JSX.Element {
                         </div>
                     </div>
 
-                    <div className="relative">
-                        <div className="absolute -inset-3 rounded-lg bg-linear-to-r from-teal-300/20 to-rose-300/20 blur-2xl" />
-                        <div className="relative overflow-hidden rounded-lg border border-white/10 bg-white/[0.04] shadow-2xl shadow-black/30">
-                            <Image
-                                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80"
-                                alt="Workspace dashboard visual"
-                                width={800}
-                                height={900}
-                                priority
-                                className="h-[420px] w-full object-cover sm:h-[520px]"
-                            />
-                            <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-slate-950 via-slate-950/70 to-transparent p-6">
-                                <p className="text-sm font-semibold text-teal-200">Currently building</p>
-                                <p className="mt-2 text-2xl font-black text-white">Better web experiences</p>
-                            </div>
-                        </div>
-                    </div>
+                    <AnimatedCodeWindow className="lg:justify-self-end" />
                 </div>
             </section>
 

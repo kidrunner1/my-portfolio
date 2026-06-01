@@ -46,7 +46,7 @@ const projects: Project[] = [
             "/images/Project/kicks10.png",
         ],
         githubUrl: "https://github.com/kidrunner1/kicks-vault",
-        liveUrl: "https://kicks-vault.vercel.app/login",
+        liveUrl: "https://kicks-vault.vercel.app/",
     },
     {
         id: 2,
